@@ -1,11 +1,16 @@
 <script setup>
 import {onBeforeMount} from "vue";
-import {mapActions} from "@/lib";
+import {mapActions, mapGetters} from "@/lib";
+import {useRouter} from "vue-router";
 
-const { getLocalNotes } = mapActions()
+
+const { getCurrentNote } = mapGetters();
+const { getLocalNotes } = mapActions();
+const router = useRouter()
 
 onBeforeMount(() => {
   getLocalNotes()
+  if (!getCurrentNote.value) router.push('/')
 })
 </script>
 
