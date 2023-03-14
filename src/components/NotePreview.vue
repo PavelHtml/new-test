@@ -50,8 +50,8 @@ const editeNote = (index) => {
   <PopUp :open="open">
     <h3 class="popup_title">Вы действительно хотите удалить заметку?</h3>
     <div class="popup_buttons">
-      <Button text="Удалить" background="green" color="white" @click="eventDeleteNote(noteIndex)"></Button>
-      <Button text="Отменить" background="red" color="white" @click="popUpAction"></Button>
+      <Button text="Отменить" @click="popUpAction"></Button>
+      <Button text="Удалить" @click="eventDeleteNote(noteIndex)"></Button>
     </div>
   </PopUp>
 </template>

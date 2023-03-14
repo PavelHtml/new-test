@@ -19,6 +19,12 @@ export default createStore({
   mutations: {
     deleteNote(state, index) {
       state.notes.splice(index, 1)
+    },
+    addNote(state) {
+      state.notes.push({
+        title: null,
+        list: null
+      })
     }
   },
   actions: {

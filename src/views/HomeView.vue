@@ -1,15 +1,29 @@
 <script setup>
 import NotePreview from "@/components/NotePreview.vue";
-import { mapGetters } from '@/lib'
+import { mapGetters, mapMutations } from '@/lib'
 import Button from "@/components/UI/Button.vue";
+import {useRouter} from "vue-router";
 
 const { getNotes } = mapGetters()
+
+const { addNote } = mapMutations()
+const router = useRouter();
+
+const addNewNote = () => {
+  addNote()
+  router.push({
+    name: 'todo',
+    params: {
+      id: getNotes.value.length
+    }
+  });
+}
 
 </script>
 
 <template>
   <div class="home">
-    <Button text="Добавить Заметку" color="white" background="green"></Button>
+    <Button text="Добавить Заметку" color="white" background="green" @click.prevent="addNewNote"></Button>
     <NotePreview  v-for="(note, index) in getNotes" :title="note.title" :note-list="note.list" :note-index="index" :key="index" />
   </div>
 </template>
