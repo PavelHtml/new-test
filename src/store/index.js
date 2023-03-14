@@ -61,10 +61,8 @@ export default createStore({
     getCurrentNote: state => state.currentNote
   },
   mutations: {
-    initialNotes(state) {
-      if (localStorage.getItem('notes') !== null) {
-        state.notes = JSON.parse(localStorage.getItem('notes'))
-      }
+    initialNotes(state, payload) {
+      state.notes = payload
     },
     deleteNote(state, index) {
       state.notes.splice(index, 1)
@@ -72,7 +70,7 @@ export default createStore({
     addNote(state) {
       state.notes.push({
         title: null,
-        list: null
+        list: []
       })
     },
     openNote(state, index) {
@@ -104,6 +102,12 @@ export default createStore({
     }
   },
   actions: {
+    getLocalNotes({ commit }) {
+      if (localStorage.getItem('notes') !== null) {
+        const localNotes = JSON.parse(localStorage.getItem('notes'))
+        commit('initialNotes', localNotes)
+      }
+    }
   },
   modules: {
   //   могу их использовать но так как приложение маленькое не стал

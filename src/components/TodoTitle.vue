@@ -22,13 +22,13 @@ onBeforeMount(() => {
 <template>
   <div class="todo_title">
     <div class="todo_title_content">
-      <h1 v-if="getCurrentNote.title && !update">{{ getCurrentNote.title }}</h1>
+      <h1 v-if="!update">{{ getCurrentNote.title }}</h1>
       <div v-else>
         <TextInput v-model="getCurrentNote.title"/>
       </div>
     </div>
     <div class="todo_title_controls">
-      <Button color="white" background="blue" @click.prevent="updateTitle">Редактировать</Button>
+      <Button color="white" background="blue" @click.prevent="updateTitle">{{ !update ? 'Редактировать' : 'Сохранить'}}</Button>
     </div>
   </div>
 </template>

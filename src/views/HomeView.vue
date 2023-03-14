@@ -14,7 +14,7 @@ const addNewNote = () => {
   router.push({
     name: 'todo',
     params: {
-      id: getNotes.value.length
+      id: getNotes.value.length - 1
     }
   });
 }

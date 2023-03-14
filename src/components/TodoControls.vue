@@ -31,7 +31,7 @@ const removeUpdate = () => {
 <template>
   <div class="todo_controls">
     <Button @click.prevent="addNewNoteItem" color="white" background="blue">Добавить заметку</Button>
-    <Button @click.prevent="saveNoteHandler" color="white" background="green">Сохронить</Button>
+    <Button @click.prevent="saveNoteHandler" color="white" background="green">Сохранить</Button>
     <Button @click.prevent="openPopUpRemoveUpdate" color="white" background="red">Отменить редактирование</Button>
   </div>
   <PopUp :open="openRemove">
