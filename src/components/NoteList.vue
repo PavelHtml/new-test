@@ -50,7 +50,7 @@ const deleteListItemHandler = () => {
         </div>
         <div class="list-item_controls">
           <Button background="blue" color="white" @click="updateListItem(item)">{{ item.update ? 'Ок' : 'Редактировать'}}</Button>
-          <Button background="red" color="white" @click="openPopUpDelete(item)">Удалить</Button>
+          <Button background="red" color="white" @click="openPopUpDelete(index)">Удалить</Button>
         </div>
       </li>
     </ul>

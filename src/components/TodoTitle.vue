@@ -16,6 +16,7 @@ const updateTitle = () => {
 
 onBeforeMount(() => {
   openNote(route.params.id)
+  if (!getCurrentNote.value.title) update.value = true
 })
 </script>
 
@@ -28,7 +29,7 @@ onBeforeMount(() => {
       </div>
     </div>
     <div class="todo_title_controls">
-      <Button color="white" background="blue" @click.prevent="updateTitle">{{ !update ? 'Редактировать' : 'Сохранить'}}</Button>
+      <Button color="white" background="blue" @click.prevent="updateTitle">{{ !update ? 'Редактировать заголовок' : 'Сохранить'}}</Button>
     </div>
   </div>
 </template>
@@ -43,6 +44,11 @@ export default {
 .todo_title {
   margin-bottom: 10px;
   display: flex;
+  align-items: center;
+}
+
+.todo_title_controls {
+  margin-left: 10px;
 }
 
 </style>

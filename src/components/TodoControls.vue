@@ -2,10 +2,12 @@
 import PopUp from "@/components/UI/PopUp.vue";
 import {ref} from "vue";
 import {mapMutations} from "@/lib";
-import {useRoute} from "vue-router";
+import {useRoute, useRouter} from "vue-router";
 import Button from "@/components/UI/Button.vue";
 
+const router = useRouter();
 const route = useRoute()
+
 const { addNewNoteItem, openNote, saveNote } = mapMutations()
 const open = ref(false)
 const openRemove = ref(false)
@@ -33,6 +35,7 @@ const removeUpdate = () => {
     <Button @click.prevent="addNewNoteItem" color="white" background="blue">Добавить заметку</Button>
     <Button @click.prevent="saveNoteHandler" color="white" background="green">Сохранить</Button>
     <Button @click.prevent="openPopUpRemoveUpdate" color="white" background="red">Отменить редактирование</Button>
+    <Button @click.prevent="router.push('/')" color="white" background="black">На главную</Button>
   </div>
   <PopUp :open="openRemove">
     <h2>Отменить редактирование?</h2>
