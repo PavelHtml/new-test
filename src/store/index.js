@@ -66,6 +66,7 @@ export default createStore({
     },
     deleteNote(state, index) {
       state.notes.splice(index, 1)
+      localStorage.setItem('notes', JSON.stringify(state.notes));
     },
     addNote(state) {
       state.notes.push({
