@@ -90,6 +90,10 @@ export default createStore({
       state.currentNote.list.splice(index, 1)
     },
     saveNote(state, index) {
+      state.currentNote.list.map(item => {
+        item.update = false
+        return item
+      })
       state.notes[index] = JSON.parse(JSON.stringify(state.currentNote))
     }
   },

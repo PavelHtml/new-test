@@ -29,4 +29,10 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.input-box input {
+  font-size: 18px;
+  padding: 0 10px;
+  border: 0;
+  border-bottom: 1px solid #000000;
+}
 </style>

@@ -8,7 +8,7 @@ import {useRoute} from "vue-router";
 import PopUp from "@/components/UI/PopUp.vue";
 
 const { getCurrentNote } = mapGetters()
-const { openNote, saveNote } = mapMutations()
+const { addNewNoteItem, openNote, saveNote } = mapMutations()
 const route = useRoute()
 
 const update = ref(false)
@@ -54,13 +54,14 @@ onBeforeMount(() => {
         </div>
       </div>
       <div class="todo_title_controls">
-        <Button @click.prevent="updateTitle">Редактировать</Button>
+        <Button color="white" background="blue" @click.prevent="updateTitle">Редактировать</Button>
       </div>
     </div>
     <note-list></note-list>
     <div class="todo_controls">
-      <Button @click.prevent="saveNoteHandler">Сохронить</Button>
-      <Button @click.prevent="openPopUpRemoveUpdate">Отменить редактирование</Button>
+      <Button @click.prevent="addNewNoteItem" color="white" background="blue">Добавить заметку</Button>
+      <Button @click.prevent="saveNoteHandler" color="white" background="green">Сохронить</Button>
+      <Button @click.prevent="openPopUpRemoveUpdate" color="white" background="red">Отменить редактирование</Button>
     </div>
     <PopUp :open="openRemove">
       <h2>Отменить редактирование?</h2>
@@ -75,3 +76,17 @@ onBeforeMount(() => {
     </PopUp>
   </div>
 </template>
+
+<style scoped>
+.todo {
+  max-width: 1024px;
+  margin: auto;
+  padding: 10px;
+}
+
+.todo_title {
+  margin-bottom: 10px;
+  display: flex;
+}
+
+</style>

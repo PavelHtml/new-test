@@ -7,7 +7,7 @@ import PopUp from "@/components/UI/PopUp.vue";
 import {ref} from "vue";
 
 const { getCurrentNote } = mapGetters()
-const { addNewNoteItem, deleteListItem } = mapMutations()
+const { deleteListItem } = mapMutations()
 const updateListItem = (item) => {
   item.update = !item.update
 }
@@ -31,7 +31,6 @@ const deleteListItemHandler = () => {
 
 <template>
   <div class="note_list">
-    <Button @click.prevent="addNewNoteItem" background="green">+</Button>
     <ul class="list">
       <li
           class="list_item"
@@ -40,7 +39,7 @@ const deleteListItemHandler = () => {
       >
         <div class="list_item_content">
           <div class="list_item_checkbox">
-            <CheckBox v-model.boolean="item.ready"/>{{item.ready}}
+            <CheckBox v-model.boolean="item.ready"/>
           </div>
           <div class="list_item_field" v-if="item.update">
             <TextInput v-model="item.text"/>
@@ -50,8 +49,8 @@ const deleteListItemHandler = () => {
           </div>
         </div>
         <div class="list-item_controls">
-          <Button @click="updateListItem(item)">{{ item.update ? 'Ок' : 'Редактировать'}}</Button>
-          <Button @click="openPopUpDelete(item)">Удалить</Button>
+          <Button background="blue" color="white" @click="updateListItem(item)">{{ item.update ? 'Ок' : 'Редактировать'}}</Button>
+          <Button background="red" color="white" @click="openPopUpDelete(item)">Удалить</Button>
         </div>
       </li>
     </ul>
@@ -71,6 +70,31 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.list {
+  padding: 10px;
+}
+
+.list_item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.list_item_content {
+  display: flex;
+  align-items: center;
+  line-height: 30px;
+  font-size: 18px;
+}
+
+.list_item_checkbox {
+  margin-right: 10px;
+  padding-top: 6px;
+}
+
+.list_item_title {
+  padding: 0 10px;
+}
 </style>
