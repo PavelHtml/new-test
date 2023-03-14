@@ -1,10 +1,6 @@
 <script setup>
-import {mapGetters, mapMutations} from "@/lib";
-import TextInput from "@/components/UI/TextInput.vue";
-import Button from "@/components/UI/Button.vue";
-import CheckBox from "@/components/UI/CheckBox.vue";
-import PopUp from "@/components/UI/PopUp.vue";
-import {ref} from "vue";
+import {mapGetters, mapMutations} from "@/lib"
+import {ref} from "vue"
 
 const { getCurrentNote } = mapGetters()
 const { deleteListItem } = mapMutations()
@@ -39,29 +35,29 @@ const deleteListItemHandler = () => {
       >
         <div class="list_item_content">
           <div class="list_item_checkbox">
-            <CheckBox v-model.boolean="item.ready"/>
+            <check-box v-model.boolean="item.ready"/>
           </div>
           <div class="list_item_field" v-if="item.update">
-            <TextInput v-model="item.text"/>
+            <text-input v-model="item.text"/>
           </div>
           <div class="list_item_title" v-else>
             {{item.text}}
           </div>
         </div>
         <div class="list-item_controls">
-          <Button background="blue" color="white" @click="updateListItem(item)">{{ item.update ? 'Ок' : 'Редактировать'}}</Button>
-          <Button background="red" color="white" @click="openPopUpDelete(index)">Удалить</Button>
+          <custom-button background="blue" color="white" @click="updateListItem(item)">{{ item.update ? 'Ок' : 'Редактировать'}}</custom-button>
+          <custom-button background="red" color="white" @click="openPopUpDelete(index)">Удалить</custom-button>
         </div>
       </li>
     </ul>
   </div>
-  <PopUp :open="openPopup">
+  <modal-dialog :open="openPopup">
     <h2>Вы уверены?</h2>
     <div class="popup_buttons">
-      <Button @click="closePopUp">Нет</Button>
-      <Button @click="deleteListItemHandler">Да</Button>
+      <custom-button @click="closePopUp">Нет</custom-button>
+      <custom-button @click="deleteListItemHandler">Да</custom-button>
     </div>
-  </PopUp>
+  </modal-dialog>
 </template>
 
 <script>

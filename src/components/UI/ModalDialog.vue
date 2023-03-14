@@ -1,5 +1,5 @@
 <script setup>
-import {defineProps} from "vue";
+import {defineProps} from "vue"
 
 defineProps({
   open: Boolean,
@@ -14,6 +14,13 @@ defineProps({
     </div>
   </div>
 </template>
+
+
+<script>
+export default {
+  name: 'ModalDialog',
+}
+</script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>

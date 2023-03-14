@@ -1,7 +1,7 @@
 <script setup>
-import TodoTitle from "@/components/TodoTitle.vue";
-import NoteList from "@/components/NoteList.vue";
-import TodoControls from "@/components/TodoControls.vue";
+import TodoTitle from "@/components/TodoTitle.vue"
+import NoteList from "@/components/NoteList.vue"
+import TodoControls from "@/components/TodoControls.vue"
 </script>
 
 <template>

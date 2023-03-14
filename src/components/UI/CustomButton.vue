@@ -1,5 +1,5 @@
 <script setup>
-import { defineProps } from "vue";
+import { defineProps } from "vue"
 
 defineProps({
   background: String,
@@ -14,7 +14,7 @@ defineProps({
 
 <script>
 export default {
-  name: `Button`
+  name: `CustomButton`
 }
 </script>
 

@@ -1,11 +1,9 @@
 <script setup>
-import PopUp from "@/components/UI/PopUp.vue";
-import {ref} from "vue";
-import {mapMutations} from "@/lib";
-import {useRoute, useRouter} from "vue-router";
-import Button from "@/components/UI/Button.vue";
+import {ref} from "vue"
+import {mapMutations} from "@/lib"
+import {useRoute, useRouter} from "vue-router"
 
-const router = useRouter();
+const router = useRouter()
 const route = useRoute()
 
 const { addNewNoteItem, openNote, saveNote } = mapMutations()
@@ -32,22 +30,22 @@ const removeUpdate = () => {
 
 <template>
   <div class="todo_controls">
-    <Button @click.prevent="addNewNoteItem" color="white" background="blue">Добавить заметку</Button>
-    <Button @click.prevent="saveNoteHandler" color="white" background="green">Сохранить</Button>
-    <Button @click.prevent="openPopUpRemoveUpdate" color="white" background="red">Отменить редактирование</Button>
-    <Button @click.prevent="router.push('/')" color="white" background="black">На главную</Button>
+    <custom-button @click.prevent="addNewNoteItem" color="white" background="blue">Добавить заметку</custom-button>
+    <custom-button @click.prevent="saveNoteHandler" color="white" background="green">Сохранить</custom-button>
+    <custom-button @click.prevent="openPopUpRemoveUpdate" color="white" background="red">Отменить редактирование</custom-button>
+    <custom-button @click.prevent="router.push('/')" color="white" background="black">На главную</custom-button>
   </div>
-  <PopUp :open="openRemove">
+  <modal-dialog :open="openRemove">
     <h2>Отменить редактирование?</h2>
     <div class="popup_buttons">
-      <Button @click.prevent="closeRemovePopUp">Нет</Button>
-      <Button @click.prevent="removeUpdate()">Да</Button>
+      <custom-button @click.prevent="closeRemovePopUp">Нет</custom-button>
+      <custom-button @click.prevent="removeUpdate()">Да</custom-button>
     </div>
-  </PopUp>
+  </modal-dialog>
 
-  <PopUp :open="open">
+  <modal-dialog :open="open">
     <h2>Изменения сохранены</h2>
-  </PopUp>
+  </modal-dialog>
 </template>
 
 <script>

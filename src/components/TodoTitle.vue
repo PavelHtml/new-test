@@ -1,9 +1,7 @@
 <script setup>
-import {mapGetters, mapMutations} from "@/lib";
-import Button from "@/components/UI/Button.vue";
-import TextInput from "@/components/UI/TextInput.vue";
-import {onBeforeMount, ref} from "vue";
-import {useRoute} from "vue-router";
+import {mapGetters, mapMutations} from "@/lib"
+import {onBeforeMount, ref} from "vue"
+import {useRoute} from "vue-router"
 
 const { getCurrentNote } = mapGetters()
 const { openNote } = mapMutations()
@@ -25,11 +23,11 @@ onBeforeMount(() => {
     <div class="todo_title_content">
       <h1 v-if="!update">{{ getCurrentNote.title }}</h1>
       <div v-else>
-        <TextInput v-model="getCurrentNote.title"/>
+        <text-input v-model="getCurrentNote.title"/>
       </div>
     </div>
     <div class="todo_title_controls">
-      <Button color="white" background="blue" @click.prevent="updateTitle">{{ !update ? 'Редактировать заголовок' : 'Сохранить'}}</Button>
+      <custom-button color="white" background="blue" @click.prevent="updateTitle">{{ !update ? 'Редактировать заголовок' : 'Сохранить'}}</custom-button>
     </div>
   </div>
 </template>
