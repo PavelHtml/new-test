@@ -40,4 +40,9 @@ export default {
 </script>
 
 <style scoped>
+.todo_title {
+  margin-bottom: 10px;
+  display: flex;
+}
+
 </style>

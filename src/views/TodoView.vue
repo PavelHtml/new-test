@@ -18,10 +18,4 @@ import TodoControls from "@/components/TodoControls.vue";
   margin: auto;
   padding: 10px;
 }
-
-.todo_title {
-  margin-bottom: 10px;
-  display: flex;
-}
-
 </style>

@@ -61,6 +61,11 @@ export default createStore({
     getCurrentNote: state => state.currentNote
   },
   mutations: {
+    initialNotes(state) {
+      if (localStorage.getItem('notes') !== null) {
+        state.notes = JSON.parse(localStorage.getItem('notes'))
+      }
+    },
     deleteNote(state, index) {
       state.notes.splice(index, 1)
     },
@@ -95,6 +100,7 @@ export default createStore({
         return item
       })
       state.notes[index] = JSON.parse(JSON.stringify(state.currentNote))
+      localStorage.setItem('notes', JSON.stringify(state.notes));
     }
   },
   actions: {
