@@ -14,7 +14,7 @@ export default createStore({
     ]
   },
   getters: {
-    getNoties: state => state.notes
+    getNotes: state => state.notes
   },
   mutations: {
   },
