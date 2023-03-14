@@ -13,6 +13,7 @@ const route = useRoute()
 
 const update = ref(false)
 const open = ref(false)
+const openRemove = ref(false)
 const updateTitle = () => {
   update.value = !update.value
 }
@@ -23,6 +24,19 @@ const saveNoteHandler = () => {
   setTimeout(() => {
     open.value = false
   }, 2000)
+}
+
+const openPopUpRemoveUpdate = () => {
+  openRemove.value = true
+}
+
+const closeRemovePopUp = () => {
+  openRemove.value = false
+}
+
+const removeUpdate = () => {
+  openNote(route.params.id)
+  closeRemovePopUp()
 }
 
 onBeforeMount(() => {
@@ -44,7 +58,18 @@ onBeforeMount(() => {
       </div>
     </div>
     <note-list></note-list>
-    <Button @click.prevent="saveNoteHandler">Сохронить</Button>
+    <div class="todo_controls">
+      <Button @click.prevent="saveNoteHandler">Сохронить</Button>
+      <Button @click.prevent="openPopUpRemoveUpdate">Отменить редактирование</Button>
+    </div>
+    <PopUp :open="openRemove">
+      <h2>Отменить редактирование?</h2>
+      <div class="popup_buttons">
+        <Button @click.prevent="closeRemovePopUp">Нет</Button>
+        <Button @click.prevent="removeUpdate()">Да</Button>
+      </div>
+    </PopUp>
+
     <PopUp :open="open">
       <h2>Изменения сохранены</h2>
     </PopUp>
