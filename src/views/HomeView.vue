@@ -10,7 +10,7 @@ const { getNotes } = mapGetters()
 <template>
   <div class="home">
     <Button text="Добавить Заметку" color="white" background="green"></Button>
-    <NotePreview  v-for="(note, key) in getNotes" :title="note.title" :note-list="note.list" :key="key" />
+    <NotePreview  v-for="(note, index) in getNotes" :title="note.title" :note-list="note.list" :note-index="index" :key="index" />
   </div>
 </template>
 

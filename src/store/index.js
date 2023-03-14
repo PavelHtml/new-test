@@ -17,6 +17,9 @@ export default createStore({
     getNotes: state => state.notes
   },
   mutations: {
+    deleteNote(state, index) {
+      state.notes.splice(index, 1)
+    }
   },
   actions: {
   },

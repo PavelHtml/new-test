@@ -1,35 +1,57 @@
 <script setup>
-import { defineProps, ref } from 'vue'
+import { mapMutations } from "@/lib";
+import { defineProps, ref } from 'vue';
+import { useRouter } from 'vue-router'
 import PopUp from "@/components/UI/PopUp.vue";
 import Button from "@/components/UI/Button.vue";
 
 defineProps({
   title: String,
-  noteList: Array
+  noteList: Array,
+  noteIndex: Number
 })
 
-const open = ref(false)
+const router = useRouter();
+const open = ref(false);
 
-const closePopUp = (e) => {
-  e.stopPropagation()
+const { deleteNote } = mapMutations()
+const popUpAction = () => {
   open.value = !open.value
 }
+const eventDeleteNote = (index) => {
+  deleteNote(index)
+  popUpAction()
+}
+const editeNote = (index) => {
+  router.push({
+    name: 'todo',
+    params: {
+      id: index
+    }
+  });
+};
 </script>
 
 <template>
-  <div class="note" @click.prevent="closePopUp">
-    <h2 class="title">{{title}}</h2>
-    <ul class="list">
-      <template v-for="(noteItem, index) in noteList" :key="$.uid + index">
-        <li class="list_item" v-if="index < 3">{{noteItem}}</li>
-      </template>
-    </ul>
+  <div class="note">
+    <div class="note_content">
+      <h2 class="title">{{title}}</h2>
+      <ul class="list">
+        <template v-for="(noteItem, index) in noteList" :key="$.uid + index">
+          <li class="list_item" v-if="index < 3">{{noteItem}}</li>
+        </template>
+      </ul>
+    </div>
+    <div class="note_control">
+      <Button text="Редактировать" background="green" class="btn-margin" color="white" @click="editeNote(noteIndex)"></Button>
+      <Button text="Удалить" background="red" color="white" @click="popUpAction"></Button>
+    </div>
   </div>
   <PopUp :open="open">
     <h3 class="popup_title">Вы действительно хотите удалить заметку?</h3>
     <div class="popup_buttons">
-      <Button text="Продолжить" background="green" color="white" @click="closePopUp"></Button>
-      <Button text="Отменить" background="red" color="white" @click="closePopUp"></Button>
+      <Button text="Удалить" background="green" color="white" @click="eventDeleteNote(noteIndex)"></Button>
+      <Button text="Отменить" background="red" color="white" @click="popUpAction"></Button>
     </div>
   </PopUp>
 </template>
@@ -41,6 +63,14 @@ const closePopUp = (e) => {
   box-shadow: 0 0 12px #bbb;
   margin-top: 10px;
   padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.note_control {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .title {

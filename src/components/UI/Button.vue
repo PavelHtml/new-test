@@ -26,7 +26,12 @@ export default {
   border-radius: 6px;
   padding: 10px 20px;
   font-size: 16px;
+  cursor: pointer;
   color: #000;
+}
+
+.btn:hover {
+  opacity: 0.8;
 }
 
 .btn + .btn {
