@@ -2,7 +2,6 @@
 import { defineProps } from "vue";
 
 defineProps({
-  text: String,
   background: String,
   color: String
 })
@@ -10,7 +9,7 @@ defineProps({
 </script>
 
 <template>
-  <button class="btn" :style="{'background': background, 'color': color}">{{text}}</button>
+  <button class="btn" :style="{'background': background, 'color': color}"><slot></slot></button>
 </template>
 
 <script>

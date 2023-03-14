@@ -23,7 +23,7 @@ const addNewNote = () => {
 
 <template>
   <div class="home">
-    <Button text="Добавить Заметку" color="white" background="green" @click.prevent="addNewNote"></Button>
+    <Button color="white" background="green" @click.prevent="addNewNote">Добавить Заметку</Button>
     <NotePreview  v-for="(note, index) in getNotes" :title="note.title" :note-list="note.list" :note-index="index" :key="index" />
   </div>
 </template>

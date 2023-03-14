@@ -5,16 +5,60 @@ export default createStore({
     notes: [
       {
         title: 'Первая заметка',
-        list: ['заметка', 'заметка', 'заметка', 'заметка']
+        list: [
+          {
+            text: 'заметка',
+            ready: true
+          },
+          {
+            text: 'заметка',
+            ready: false
+          },
+          {
+            text: 'заметка',
+            ready: false
+          },
+          {
+            text: 'заметка',
+            ready: false
+          },
+          {
+            text: 'заметка',
+            ready: false
+          }
+        ]
       },
       {
         title: 'Вторая заметка',
-        list: ['заметка', 'заметка', 'заметка', 'заметка']
+        list: [
+          {
+            text: 'заметка',
+            ready: false
+          },
+          {
+            text: 'заметка',
+            ready: false
+          },
+          {
+            text: 'заметка',
+            ready: false
+          },
+          {
+            text: 'заметка',
+            ready: false
+          },
+          {
+            text: 'заметка',
+            ready: false
+          }
+        ]
       }
-    ]
+    ],
+    currentNote: null
   },
   getters: {
-    getNotes: state => state.notes
+    getNotes: state => state.notes,
+    getCurrentNote: state => state.currentNote
   },
   mutations: {
     deleteNote(state, index) {
@@ -25,6 +69,28 @@ export default createStore({
         title: null,
         list: null
       })
+    },
+    openNote(state, index) {
+      state.currentNote = JSON.parse(JSON.stringify(state.notes[index]))
+    },
+    updateNoteTitle(state, title) {
+      state.currentNote.title = title
+    },
+    updateNoteList(state, list) {
+      state.currentNote.list = list
+    },
+    addNewNoteItem(state) {
+      state.currentNote.list.push({
+        text: null,
+        ready: false,
+        update: true
+      })
+    },
+    deleteListItem(state, index) {
+      state.currentNote.list.splice(index, 1)
+    },
+    saveNote(state, index) {
+      state.notes[index] = JSON.parse(JSON.stringify(state.currentNote))
     }
   },
   actions: {

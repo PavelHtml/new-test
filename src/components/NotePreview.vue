@@ -38,20 +38,20 @@ const editeNote = (index) => {
       <h2 class="title">{{title}}</h2>
       <ul class="list">
         <template v-for="(noteItem, index) in noteList" :key="$.uid + index">
-          <li class="list_item" v-if="index < 3">{{noteItem}}</li>
+          <li class="list_item" v-if="index < 3">{{noteItem.text}}</li>
         </template>
       </ul>
     </div>
     <div class="note_control">
-      <Button text="Редактировать" background="green" class="btn-margin" color="white" @click="editeNote(noteIndex)"></Button>
-      <Button text="Удалить" background="red" color="white" @click="popUpAction"></Button>
+      <Button background="green" class="btn-margin" color="white" @click="editeNote(noteIndex)">Редактировать</Button>
+      <Button background="red" color="white" @click="popUpAction">Удалить</Button>
     </div>
   </div>
   <PopUp :open="open">
     <h3 class="popup_title">Вы действительно хотите удалить заметку?</h3>
     <div class="popup_buttons">
-      <Button text="Отменить" @click="popUpAction"></Button>
-      <Button text="Удалить" @click="eventDeleteNote(noteIndex)"></Button>
+      <Button @click="popUpAction">Отменить</Button>
+      <Button @click="eventDeleteNote(noteIndex)">Удалить</Button>
     </div>
   </PopUp>
 </template>
