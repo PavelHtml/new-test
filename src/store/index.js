@@ -71,8 +71,15 @@ export default createStore({
     addNote(state) {
       state.notes.push({
         title: null,
-        list: []
+        list: [
+          {
+            text: null,
+            ready: false,
+            update: true
+          },
+        ]
       })
+      localStorage.setItem('notes', JSON.stringify(state.notes));
     },
     openNote(state, index) {
       state.currentNote = JSON.parse(JSON.stringify(state.notes[index]))
